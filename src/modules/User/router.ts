@@ -5,5 +5,6 @@ const router = Router();
 const baseUrl = '/user';
 
 router.get(`${baseUrl}/read`, userController.read);
+router.post(`${baseUrl}/create`, userController.create);
 
 export const userRouter = router;
