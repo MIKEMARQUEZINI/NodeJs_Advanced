@@ -7,8 +7,8 @@ class UserController {
 
     await prisma.user.create({
       data: {
-        name: 'Mario Bros',
         email: 'teste@emailteste.com',
+        name: 'Mario Bros',
       },
     });
 
