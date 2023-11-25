@@ -4,7 +4,7 @@ import { userService } from '../service/user-service';
 
 class UserController {
   public async create(req: Request, res: Response) {
-    const { nome, email, password } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       const ZUserSchema = z.object({
@@ -15,14 +15,14 @@ class UserController {
           .min(6, { message: 'Password is mandatory' })
           .max(255),
       });
-      ZUserSchema.parse({ name: nome, email, password });
+      ZUserSchema.parse({ name, email, password });
     } catch (err: any) {
       return res
         .status(400)
-        .json({ message: 'Dados invalidos', error: err.errors });
+        .json({ message: 'Dados invalids', error: err.errors });
     }
 
-    await userService.create(nome, email, password);
+    await userService.create(name, email, password);
   }
 }
 export const userController = new UserController();
