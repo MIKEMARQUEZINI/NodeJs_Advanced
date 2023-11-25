@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
+import { userService } from '../service/user-service';
 
 class UserController {
-  public create(req: Request, res: Response) {
+  public async create(req: Request, res: Response) {
     const { nome, email, password } = req.body;
 
     try {
@@ -20,6 +21,8 @@ class UserController {
         .status(400)
         .json({ message: 'Dados invalidos', error: err.errors });
     }
+
+    await userService.create(nome, email, password);
   }
 }
 export const userController = new UserController();
