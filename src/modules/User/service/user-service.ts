@@ -7,11 +7,9 @@ class UserService {
         email,
       },
     });
-
     if (findUser) {
       throw new Error('User already exists');
     }
-
     const createUser = await prismaConnect.user.create({
       data: {
         name,

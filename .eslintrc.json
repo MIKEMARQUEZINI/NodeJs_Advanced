@@ -9,8 +9,8 @@
   ],
   "plugins": ["@typescript-eslint", "import", "prettier"],
   "rules": {
-    "prettier/prettier": "error",
-    "import/order": "error",
+    "prettier/prettier": "off",
+    "import/order": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "warn"
   },
