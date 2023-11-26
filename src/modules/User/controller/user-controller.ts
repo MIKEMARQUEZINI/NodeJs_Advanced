@@ -9,7 +9,7 @@ class UserController {
     try {
       const ZUserSchema = z.object({
         name: z.string().optional(),
-        email: z.string().email({ message: 'Email inválid' }),
+        email: z.string().email({ message: 'Email mandatory' }),
         password: z
           .string()
           .min(6, { message: 'Password is mandatory' })
@@ -19,10 +19,19 @@ class UserController {
     } catch (err: any) {
       return res
         .status(400)
-        .json({ message: 'Dados invalids', error: err.errors });
+        .json({ message: 'Invalid data', error: err.errors });
     }
 
-    await userService.create(name, email, password);
+    try {
+      return res.json({
+        message: 'User created!',
+        data: await userService.create(name, email, password),
+      });
+    } catch (err: any) {
+      return res.status(409).json({
+        message: err.message,
+      });
+    }
   }
 }
 export const userController = new UserController();

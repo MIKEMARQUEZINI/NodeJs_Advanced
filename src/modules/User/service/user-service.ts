@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { prismaConnect } from 'prismaConn';
 
 class UserService {
@@ -14,7 +15,7 @@ class UserService {
       data: {
         name,
         email,
-        password,
+        password: bcrypt.hashSync(password, 6),
       },
       select: {
         id: true,
@@ -22,6 +23,7 @@ class UserService {
         email: true,
       },
     });
+    return createUser;
   }
 }
 
