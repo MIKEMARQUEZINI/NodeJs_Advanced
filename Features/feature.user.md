@@ -39,6 +39,3 @@
 --- Débitos Técnicos
 --- Autorização: só pode acessar a rota Logado
 --- Não pode deletar outro usuário
-
-##commit for test git actions
-```

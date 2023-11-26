@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { prismaConnect } from 'prismaConn';
+import { UtilsFileUser } from '../utils/utils-files';
 
 class UserService {
   public async create(name: string, email: string, password: string) {
@@ -23,6 +24,9 @@ class UserService {
         email: true,
       },
     });
+
+    UtilsFileUser.createFolderUser(createUser.id);
+
     return createUser;
   }
 }
